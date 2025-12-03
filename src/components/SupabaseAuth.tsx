@@ -12,7 +12,9 @@ export default function SupabaseAuth() {
   const router = useRouter()
 
   useEffect(() => {
+    console.log('🔍 SupabaseAuth - User state changed:', user?.email || 'No user')
     if (user) {
+      console.log('🔄 Redirecting to dashboard...')
       router.push('/dashboard')
     }
   }, [user, router])
