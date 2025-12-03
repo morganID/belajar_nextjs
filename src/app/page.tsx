@@ -1,3 +1,5 @@
+'use client'
+
 import SupabaseAuth from '@/components/SupabaseAuth'
 import { useAuth } from '@/components/AuthProvider'
 import Link from 'next/link'
