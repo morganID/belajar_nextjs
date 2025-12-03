@@ -60,11 +60,20 @@ Buat file `.env.local` di root project:
 # Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
+
+# Site URL for OAuth redirects (sesuaikan dengan port yang digunakan)
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
 **Cara mendapatkan nilai-nilai ini:**
 - **URL**: Di Supabase Dashboard → Settings → API → Project URL
 - **Anon Key**: Di Supabase Dashboard → Settings → API → Project API keys → anon public
+- **Site URL**: URL lengkap aplikasi Anda (misal: `http://localhost:3000`)
+
+**⚠️ PENTING**: `NEXT_PUBLIC_SITE_URL` harus sesuai dengan:
+1. Port yang digunakan aplikasi (3000, 3001, dll)
+2. URL yang dikonfigurasi di Supabase Authentication → Providers → Google
+3. Authorized redirect URIs di Google Cloud Console
 
 ## 🚀 Menjalankan Aplikasi
 

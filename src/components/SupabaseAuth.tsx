@@ -74,7 +74,7 @@ export default function SupabaseAuth() {
           },
         }}
         providers={['google']}
-        redirectTo={`${typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'}/auth/callback`}
+        redirectTo={`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/callback`}
         onlyThirdPartyProviders={false}
         localization={{
           variables: {
