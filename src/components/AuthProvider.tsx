@@ -43,7 +43,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   const signOut = async () => {
-    await supabase.auth.signOut()
+    try {
+      console.log('🔄 Signing out...')
+      const { error } = await supabase.auth.signOut()
+
+      if (error) {
+        console.error('❌ Remote sign out failed:', error.message)
+        // Continue with local session clearing even if remote fails
+        console.log('⚠️ Continuing with local session clearing...')
+      } else {
+        console.log('✅ Remote sign out successful')
+      }
+
+      // Force clear local session regardless of remote logout result
+      setUser(null)
+      setSession(null)
+
+    } catch (error) {
+      console.error('❌ Sign out failed:', error)
+      // Still try to clear local session
+      setUser(null)
+      setSession(null)
+      throw error
+    }
   }
 
   const value = {

@@ -27,8 +27,13 @@ export default function Dashboard() {
   }
 
   const handleSignOut = async () => {
-    await signOut()
-    router.push('/')
+    try {
+      await signOut()
+      router.push('/')
+    } catch (error) {
+      console.error('Logout failed:', error)
+      alert('Gagal logout. Silakan coba lagi.')
+    }
   }
 
   return (
