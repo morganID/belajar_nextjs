@@ -8,16 +8,16 @@ import { useEffect } from 'react'
 import { useAuth } from './AuthProvider'
 
 export default function SupabaseAuth() {
-  const { user } = useAuth()
+  const { user, loading } = useAuth()
   const router = useRouter()
 
   useEffect(() => {
-    console.log('🔍 SupabaseAuth - User state changed:', user?.email || 'No user')
-    if (user) {
-      console.log('🔄 Redirecting to dashboard...')
+    console.log('🔍 SupabaseAuth - User state changed:', user?.email || 'No user', 'Loading:', loading)
+    if (user && !loading) {
+      console.log('🔄 User authenticated, redirecting to dashboard...')
       router.push('/dashboard')
     }
-  }, [user, router])
+  }, [user, loading, router])
 
   if (user) {
     return (
