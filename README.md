@@ -47,10 +47,18 @@ Aplikasi berjalan di: http://localhost:3000
 
 ### 3. Konfigurasi Supabase Auth
 
-1. Di Supabase Dashboard, pergi ke Authentication > Providers
-2. Enable Google provider
-3. Masukkan Client ID dan Client Secret dari Google
-4. Simpan perubahan
+1. **URL Configuration:**
+   - Site URL: `http://localhost:3001`
+   - Redirect URLs: `http://localhost:3001/auth/callback`
+
+2. **Google Provider:**
+   - Pergi ke Authentication → Providers
+   - Enable Google provider
+   - Masukkan Client ID dan Client Secret dari Google
+   - **Redirect URL:** `https://your-project-id.supabase.co/auth/v1/callback`
+   - Simpan perubahan
+
+**⚠️ PENTING:** Pastikan URL di Supabase Dashboard cocok dengan `NEXT_PUBLIC_SITE_URL` di `.env.local`
 
 ### 4. Setup Environment Variables
 
@@ -148,6 +156,14 @@ belajar-nextjs/
 ### Error: "OAuth callback error"
 - Pastikan Google OAuth sudah dikonfigurasi dengan benar di Supabase
 - Periksa Authorized redirect URIs di Google Cloud Console
+- **Cek Supabase URL Configuration**: Site URL dan Redirect URLs harus cocok dengan `NEXT_PUBLIC_SITE_URL`
+
+### Error: "Redirect ke auth-code-error tanpa authorization code"
+- **Supabase URL Configuration salah**: Pastikan di Supabase Dashboard:
+  - **Authentication → URL Configuration**
+  - Site URL: `http://localhost:3001` (sesuai NEXT_PUBLIC_SITE_URL)
+  - Redirect URLs: `http://localhost:3001/auth/callback`
+- **Google Cloud Console salah**: Authorized redirect URIs harus: `https://your-project-id.supabase.co/auth/v1/callback`
 
 ### Error: "Environment variables not found"
 - Pastikan file `.env.local` sudah dibuat dengan nilai yang benar
